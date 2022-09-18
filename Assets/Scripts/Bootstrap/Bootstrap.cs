@@ -27,7 +27,8 @@ public class Bootstrap : MonoBehaviour
     public float Speed = 2;
     public int ChopTimeTicks = 5;
     public int LumbersPerTree = 1;
-    public Vector3 HomePosition = new Vector3(1, 1, 0);
+    
+    private Vector3 _homePosition = new Vector3(1, 1, 0);
     
     private void Awake()
     {
@@ -45,6 +46,8 @@ public class Bootstrap : MonoBehaviour
             TreeDensity = 1,
         };
 
+        _homePosition = new Vector3(MapSize * .5f, 1 - MapSize * .5f, 0);
+        
         var tileSet = new Dictionary<CellState, Sprite>()
         {
             {CellState.Grass, GrassSprite},
@@ -55,7 +58,7 @@ public class Bootstrap : MonoBehaviour
             ChopTimeTicks,
             LumbersPerTree,
             Speed,
-            HomePosition,
+            _homePosition,
             null,
             null
             );

@@ -69,6 +69,7 @@ public static class MapGenerator
         Woodsman CreateWoodsman()
         {
             var woodsman = Object.Instantiate(woodsmanPrefab);
+            woodsman.transform.position = stats.HomePosition;
             woodsman.Init(stats);
 
             return woodsman;

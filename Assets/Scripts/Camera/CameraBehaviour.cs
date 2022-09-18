@@ -19,6 +19,7 @@ public class CameraBehaviour : MonoBehaviour
     
     public void Setup(int mapHalfSize, float scrollSpeed)
     {
+        _camera = GetComponent<Camera>();
         _scrollSpeed = scrollSpeed;
         
         float cellsPerScreenHeight = _camera.orthographicSize * 2;
@@ -30,11 +31,6 @@ public class CameraBehaviour : MonoBehaviour
         maxBound = new Vector2(mapHalfSize - cellsPerCameraHalfWidth, mapHalfSize - Height);
 
         transform.position = new Vector3(int.MinValue, int.MinValue);
-    }
-    
-    private void Awake()
-    {
-        _camera = GetComponent<Camera>();
     }
 
     // Update is called once per frame

@@ -24,6 +24,10 @@ public class MapModel
         }
     }
 
+    public Cell[] GetCells() => _cells;
+
+    public List<Woodsman> GetWorkers() => _workers;
+
     private void OnTick()
     {
         _workers.ForEach(worker =>

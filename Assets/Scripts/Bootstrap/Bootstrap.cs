@@ -14,11 +14,16 @@ public class Bootstrap : MonoBehaviour
     public Sprite GrassSprite;
     public Sprite TreeSprite;
 
+    [Header("MiniMap")] 
+    public MiniMap MiniMap;
+    public int TicksToRedraw;
+
     [Header("Camera")] 
     public float ScrollSpeed;
 
     [Header("Workers")] 
     public Woodsman WoodsmanPrefab;
+    public int WoodsmanCount;
     public float Speed = 2;
     public int ChopTimeTicks = 5;
     public int LumbersPerTree = 1;
@@ -55,8 +60,9 @@ public class Bootstrap : MonoBehaviour
             null
             );
         
-        var mapGenerator = MapGenerator.CreateMap(
+        var mapModel = MapGenerator.CreateMap(
             tileSet,
+            WoodsmanCount,
             WoodsmanPrefab,
             woodsmanStats,
             CellPrefab,
@@ -65,6 +71,9 @@ public class Bootstrap : MonoBehaviour
 
         var cameraBehaviour = FindObjectOfType<CameraBehaviour>();
         cameraBehaviour.Setup(MapSize/2, ScrollSpeed);
+        
+        MiniMap.Init(mapModel, TicksToRedraw);
+        gameTickService.OnTick += MiniMap.OnTick;
         
         gameTickService.Play();
     }

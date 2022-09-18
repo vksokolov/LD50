@@ -8,6 +8,7 @@ public static class MapGenerator
 {
     public static MapModel CreateMap(
         Dictionary<CellState, Sprite> tileSet,
+        int woodsmanCount,
         Woodsman woodsmanPrefab,
         WoodsmanStats woodsmanStats,
         Cell cellPrefab,
@@ -46,9 +47,11 @@ public static class MapGenerator
             woodsmanStats.HomePosition,
             map.GetTree,
             map.TurnInWood);
-        
-        var worker = CreateWoodsman();
-        map.AddWorker(worker);
+
+        for (var i = 0; i < woodsmanCount; i++)
+        {
+            map.AddWorker(CreateWoodsman());
+        }
         
         return map;
 

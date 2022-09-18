@@ -150,17 +150,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4cce310f60927844ad7efe54bd00d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TicksPerSecond: 20
+  TicksPerSecond: 30
   MapSize: 16
   CellPrefab: {fileID: 1370057184710541808, guid: 07b457d430348074d9a1fb7cf2a1aad8,
     type: 3}
   GrassSprite: {fileID: 21300000, guid: 95749cd729bd46a4cb3a30cbb98bb526, type: 3}
   TreeSprite: {fileID: 21300000, guid: 82120705492015844b54a3b32d33b7d2, type: 3}
+  MiniMap: {fileID: 1489946513}
+  TicksToRedraw: 5
   ScrollSpeed: 3
   WoodsmanPrefab: {fileID: 6207504280787170665, guid: e66ac72ab29d63448ace7a5780befc3b,
     type: 3}
-  Speed: 0.6
-  ChopTimeTicks: 50
+  WoodsmanCount: 10
+  Speed: 0.1
+  ChopTimeTicks: 40
   LumbersPerTree: 1
   HomePosition: {x: 1, y: 1, z: 0}
 --- !u!4 &17243629
@@ -261,7 +264,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187320773}
   m_Enabled: 1
-  m_Alpha: 0.39
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -679,6 +682,7 @@ GameObject:
   - component: {fileID: 1489946510}
   - component: {fileID: 1489946512}
   - component: {fileID: 1489946511}
+  - component: {fileID: 1489946513}
   m_Layer: 5
   m_Name: RawImage
   m_TagString: Untagged
@@ -703,7 +707,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -6, y: -6}
+  m_SizeDelta: {x: -4, y: -4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489946511
 MonoBehaviour:
@@ -739,6 +743,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489946509}
   m_CullTransparentMesh: 0
+--- !u!114 &1489946513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489946509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549a36a652f437a46a3af2777db01913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Image: {fileID: 1489946511}
 --- !u!1 &1508587162
 GameObject:
   m_ObjectHideFlags: 0

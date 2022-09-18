@@ -3,18 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class Cell : MonoBehaviour
 {
+    public CellState CurrentState { get; private set; }
+    public event Action<Cell, CellState> OnStateChanged;
+    
+    [SerializeField]
     private SpriteRenderer _spriteRenderer;
+    private Func<CellState, Sprite> _getSprite;
 
-    private void Awake()
+    public void Init(Func<CellState, Sprite> getSprite,
+        CellState state)
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _getSprite = getSprite;
+        SetState(state);
     }
 
-    public void SetSprite(Sprite sprite)
+    private void SetState(CellState state)
     {
-        _spriteRenderer.sprite = sprite;
+        CurrentState = state;
+        _spriteRenderer.sprite = _getSprite(CurrentState);
+        
+        OnStateChanged?.Invoke(this, CurrentState);
+    }
+
+    public void OnTreeChopped()
+    {
+        SetState(CellState.Grass);
     }
 }

@@ -24,7 +24,10 @@ public class GameTickService : MonoBehaviour
 
     public void SetTicksPerSecond(int tps) => _secondsPerTick = 1f / tps;
 
-    private void Tick() => OnTick?.Invoke();
+    private void Tick() 
+    {
+        OnTick?.Invoke();
+    }
 
     public void Pause() => _isPaused = true;
     public void Play() => _isPaused = false;

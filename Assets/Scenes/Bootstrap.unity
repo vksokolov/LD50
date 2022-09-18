@@ -150,12 +150,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4cce310f60927844ad7efe54bd00d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TicksPerSecond: 1
+  TicksPerSecond: 20
   MapSize: 16
   CellPrefab: {fileID: 1370057184710541808, guid: 07b457d430348074d9a1fb7cf2a1aad8,
     type: 3}
   GrassSprite: {fileID: 21300000, guid: 95749cd729bd46a4cb3a30cbb98bb526, type: 3}
+  TreeSprite: {fileID: 21300000, guid: 82120705492015844b54a3b32d33b7d2, type: 3}
   ScrollSpeed: 3
+  WoodsmanPrefab: {fileID: 6207504280787170665, guid: e66ac72ab29d63448ace7a5780befc3b,
+    type: 3}
+  Speed: 0.6
+  ChopTimeTicks: 50
+  LumbersPerTree: 1
+  HomePosition: {x: 1, y: 1, z: 0}
 --- !u!4 &17243629
 Transform:
   m_ObjectHideFlags: 0

@@ -28,6 +28,8 @@ public class CameraBehaviour : MonoBehaviour
         
         minBound = new Vector2( -mapHalfSize + maxLeftOffset, Height - mapHalfSize);
         maxBound = new Vector2(mapHalfSize - cellsPerCameraHalfWidth, mapHalfSize - Height);
+
+        transform.position = new Vector3(int.MinValue, int.MinValue);
     }
     
     private void Awake()

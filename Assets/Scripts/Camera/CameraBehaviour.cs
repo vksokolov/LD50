@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
 public class CameraBehaviour : MonoBehaviour
@@ -13,8 +10,8 @@ public class CameraBehaviour : MonoBehaviour
     
     private Camera _camera;
     
-    private Vector2 minBound;
-    private Vector2 maxBound;
+    private Vector2 _minBound;
+    private Vector2 _maxBound;
     private float _scrollSpeed;
     
     public void Setup(int mapHalfSize, float scrollSpeed)
@@ -27,8 +24,8 @@ public class CameraBehaviour : MonoBehaviour
         float cellsPerCameraHalfWidth = _camera.pixelWidth / cellsSizePixels / 2;
         float maxLeftOffset = cellsPerCameraHalfWidth - LeftPanelWidth;
         
-        minBound = new Vector2( -mapHalfSize + maxLeftOffset, Height - mapHalfSize);
-        maxBound = new Vector2(mapHalfSize - cellsPerCameraHalfWidth, mapHalfSize - Height);
+        _minBound = new Vector2( -mapHalfSize + maxLeftOffset, Height - mapHalfSize);
+        _maxBound = new Vector2(mapHalfSize - cellsPerCameraHalfWidth, mapHalfSize - Height);
 
         transform.position = new Vector3(int.MinValue, int.MinValue);
     }
@@ -54,8 +51,8 @@ public class CameraBehaviour : MonoBehaviour
         
         var currentPosition = transform.position;
         var targetPosition = new Vector3(
-            Mathf.Clamp(currentPosition.x + input.x, minBound.x, maxBound.x),
-            Mathf.Clamp(currentPosition.y + input.y, minBound.y, maxBound.y),
+            Mathf.Clamp(currentPosition.x + input.x, _minBound.x, _maxBound.x),
+            Mathf.Clamp(currentPosition.y + input.y, _minBound.y, _maxBound.y),
             ZPosition);
         transform.position = targetPosition;
     }

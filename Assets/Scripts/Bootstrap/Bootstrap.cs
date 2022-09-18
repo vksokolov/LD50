@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Bootstrap : MonoBehaviour
 {
+    [Header("Presets")] 
+    [SerializeField] private MapSettings MapSettings;
+    [SerializeField] private WoodsmanStats WoodsmanStats;
+    [SerializeField] private MapTileSetPreset TileSetPreset;
+    
     [Header("GameTickService")]
     public int TicksPerSecond;
 
     [Header("MapGenerator")] 
-    [Range(16,128)]
-    public int MapSize = 16;
     public Cell CellPrefab;
-    public Sprite GrassSprite;
-    public Sprite TreeSprite;
 
     [Header("MiniMap")] 
     public MiniMap MiniMap;
@@ -24,11 +25,8 @@ public class Bootstrap : MonoBehaviour
     [Header("Workers")] 
     public Woodsman WoodsmanPrefab;
     public int WoodsmanCount;
-    public float Speed = 2;
-    public int ChopTimeTicks = 5;
-    public int LumbersPerTree = 1;
     
-    private Vector3 _homePosition = new Vector3(1, 1, 0);
+    private int MapSize => MapSettings.MapSize;
     
     private void Awake()
     {
@@ -40,36 +38,13 @@ public class Bootstrap : MonoBehaviour
 
     private void StartDefaultGame(GameTickService gameTickService)
     {
-        var mapSettings = new MapSettings()
-        {
-            MapSize = MapSize,
-            TreeDensity = 1,
-        };
-
-        _homePosition = new Vector3(MapSize * .5f, 1 - MapSize * .5f, 0);
-        
-        var tileSet = new Dictionary<CellState, Sprite>()
-        {
-            {CellState.Grass, GrassSprite},
-            {CellState.Tree, TreeSprite}
-        };
-
-        var woodsmanStats = new WoodsmanStats(
-            ChopTimeTicks,
-            LumbersPerTree,
-            Speed,
-            _homePosition,
-            null,
-            null
-            );
-        
         var mapModel = MapGenerator.CreateMap(
-            tileSet,
+            TileSetPreset.GetTileSet(),
             WoodsmanCount,
             WoodsmanPrefab,
-            woodsmanStats,
+            WoodsmanStats,
             CellPrefab,
-            mapSettings, 
+            MapSettings, 
             gameTickService);
 
         var cameraBehaviour = FindObjectOfType<CameraBehaviour>();

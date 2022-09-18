@@ -39,12 +39,9 @@ public static class MapGenerator
 
         var map = new MapModel(cells, gameTickService);
 
-
-        WoodsmanStats stats = new WoodsmanStats(
-            woodsmanStats.ChopTimeTicks,
-            woodsmanStats.LumbersPerTree,
-            woodsmanStats.Speed,
-            woodsmanStats.HomePosition,
+        Vector3 homePosition = new Vector3(settings.MapSize * .5f, 1 - settings.MapSize * .5f, 0);
+        woodsmanStats.Init(
+            homePosition,
             map.GetTree,
             map.TurnInWood);
 
@@ -69,8 +66,8 @@ public static class MapGenerator
         Woodsman CreateWoodsman()
         {
             var woodsman = Object.Instantiate(woodsmanPrefab);
-            woodsman.transform.position = stats.HomePosition;
-            woodsman.Init(stats);
+            woodsman.transform.position = woodsmanStats.HomePosition;
+            woodsman.Init(woodsmanStats);
 
             return woodsman;
         }

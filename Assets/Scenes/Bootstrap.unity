@@ -150,12 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4cce310f60927844ad7efe54bd00d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapSettings: {fileID: 11400000, guid: eef8afc744eaeda4d84d554ac7df0752, type: 2}
+  WoodsmanStats: {fileID: 11400000, guid: 2e8be5482851c4342b259325b3d9dc40, type: 2}
+  TileSetPreset: {fileID: 11400000, guid: 3a58c12541590894cb5971c702b41ed6, type: 2}
   TicksPerSecond: 60
-  MapSize: 16
   CellPrefab: {fileID: 1370057184710541808, guid: 07b457d430348074d9a1fb7cf2a1aad8,
     type: 3}
-  GrassSprite: {fileID: 21300000, guid: 95749cd729bd46a4cb3a30cbb98bb526, type: 3}
-  TreeSprite: {fileID: 21300000, guid: 82120705492015844b54a3b32d33b7d2, type: 3}
   MiniMap: {fileID: 1489946513}
   TicksToRedraw: 5
   ScrollSpeed: 3
@@ -165,7 +165,6 @@ MonoBehaviour:
   Speed: 0.1
   ChopTimeTicks: 40
   LumbersPerTree: 1
-  HomePosition: {x: 1, y: 1, z: 0}
 --- !u!4 &17243629
 Transform:
   m_ObjectHideFlags: 0

@@ -12,9 +12,6 @@ public class Bootstrap : MonoBehaviour
     [Header("GameTickService")]
     public int TicksPerSecond;
 
-    [Header("MapGenerator")] 
-    public Cell CellPrefab;
-
     [Header("MiniMap")] 
     public MiniMap MiniMap;
     public int TicksToRedraw;
@@ -39,11 +36,10 @@ public class Bootstrap : MonoBehaviour
     private void StartDefaultGame(GameTickService gameTickService)
     {
         var mapModel = MapGenerator.CreateMap(
-            TileSetPreset.GetTileSet(),
+            TileSetPreset,
             WoodsmanCount,
             WoodsmanPrefab,
             WoodsmanStats,
-            CellPrefab,
             MapSettings, 
             gameTickService);
 

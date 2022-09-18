@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Presets/MapTileSetPreset", fileName = "MapTileSetPreset")]
 public class MapTileSetPreset : ScriptableObject
 {
+    public Cell CellPrefab;
     public Sprite Grass;
     public Sprite Ground;
     public Sprite Tree;

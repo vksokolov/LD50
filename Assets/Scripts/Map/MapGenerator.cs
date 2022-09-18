@@ -7,11 +7,10 @@ using Object = UnityEngine.Object;
 public static class MapGenerator
 {
     public static MapModel CreateMap(
-        Dictionary<CellState, Sprite> tileSet,
+        MapTileSetPreset tileSetPreset,
         int woodsmanCount,
         Woodsman woodsmanPrefab,
         WoodsmanStats woodsmanStats,
-        Cell cellPrefab,
         MapSettings settings,
         GameTickService gameTickService)
     {
@@ -19,7 +18,10 @@ public static class MapGenerator
         float minusHalf = -(size / 2) + .5f;
         Cell[] cells = new Cell[size * size];
 
+        var tileSet = tileSetPreset.GetTileSet();
+        var cellPrefab = tileSetPreset.CellPrefab;
         var mapRoot = new GameObject("Map").transform;
+        
         for (var x = 0; x < settings.MapSize; x++)
             for (var y = 0; y < settings.MapSize; y++)
             {

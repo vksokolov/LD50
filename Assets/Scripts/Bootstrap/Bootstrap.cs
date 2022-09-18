@@ -6,10 +6,15 @@ public class Bootstrap : MonoBehaviour
 {
     [Header("GameTickService")]
     public int TicksPerSecond;
-    
-    [Header("MapGenerator")]
+
+    [Header("MapGenerator")] 
+    [Range(16,128)]
+    public int MapSize = 16;
     public Cell CellPrefab;
     public Sprite GrassSprite;
+
+    [Header("Camera")] 
+    public float ScrollSpeed;
     
     private void Awake()
     {
@@ -23,7 +28,7 @@ public class Bootstrap : MonoBehaviour
     {
         var mapSettings = new MapSettings()
         {
-            MapSize = 16,
+            MapSize = MapSize,
             TreeDensity = 1,
         };
 
@@ -37,5 +42,8 @@ public class Bootstrap : MonoBehaviour
             CellPrefab,
             mapSettings, 
             gameTickService);
+
+        var CameraBehaviour = FindObjectOfType<CameraBehaviour>();
+        CameraBehaviour.Setup(MapSize/2, ScrollSpeed);
     }
 }

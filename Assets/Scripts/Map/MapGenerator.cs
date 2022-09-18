@@ -21,7 +21,7 @@ public static class MapGenerator
         GameTickService gameTickService)
     {
         int size = settings.MapSize;
-        int minusHalf = -size / 2;
+        float minusHalf = -(size / 2) + .5f;
         Cell[] cells = new Cell[size * size];
         
         for (var x = 0; x < settings.MapSize; x++)

@@ -43,6 +43,8 @@ public class Bootstrap : MonoBehaviour
             MapSettings, 
             gameTickService);
 
+        var resourceService = new ResourceService();
+        
         var cameraBehaviour = FindObjectOfType<CameraBehaviour>();
         cameraBehaviour.Setup(MapSize/2, ScrollSpeed);
         

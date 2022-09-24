@@ -27,7 +27,9 @@ public static class MapGenerator
             {
                 float random = UnityEngine.Random.Range(0, 1);
                 CellState state = CellState.Grass;
-                if (random < settings.TreeDensity)
+                if (x > settings.MapSize - 3 && y < 2)
+                    state = CellState.Ground;
+                else if (random < settings.TreeDensity)
                     state = CellState.Tree;
                 
                 var cell = CreateCell(state, new Vector2(x, y));

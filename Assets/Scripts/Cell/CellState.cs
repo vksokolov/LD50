@@ -3,5 +3,6 @@
     Ground,
     Grass,
     Tree,
+    SproutGrowing,
     Building,
 }

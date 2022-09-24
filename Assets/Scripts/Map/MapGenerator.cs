@@ -30,7 +30,7 @@ public static class MapGenerator
                 if (random < settings.TreeDensity)
                     state = CellState.Tree;
                 
-                var cell = CreateCell(state);
+                var cell = CreateCell(state, new Vector2(x, y));
                 
                 var transform = cell.transform;
                 transform.SetParent(mapRoot);
@@ -39,7 +39,7 @@ public static class MapGenerator
                 cells[x * size + y] = cell;
             }
 
-        var map = new MapModel(cells, gameTickService);
+        var map = new MapModel(cells, gameTickService, settings);
 
         Vector3 homePosition = new Vector3(settings.MapSize * .5f, 1 - settings.MapSize * .5f, 0);
         woodsmanStats.Init(
@@ -54,13 +54,36 @@ public static class MapGenerator
         
         return map;
 
-        Cell CreateCell(CellState state)
+        Cell CreateCell(CellState state, Vector2 position)
         {
             var cell = Object.Instantiate(cellPrefab);
+            cell.Position = position;
 
-            Sprite GetSprite(CellState x) => tileSet[x];
+            Sprite GetBackgroundSprite(CellState x)
+            {
+                switch (x)
+                {
+                    case CellState.Grass:
+                    case CellState.Tree:
+                    case CellState.SproutGrowing:
+                        return tileSet[CellState.Grass];
+                    default:
+                        return tileSet[CellState.Ground];
+                }
+            }
             
-            cell.Init(GetSprite, state);
+            Sprite GetTreeGrowthSprite(int x)
+            {
+                if (x == 0) return tileSetPreset.Sprout1;
+                if (x == 1) return tileSetPreset.Sprout2;
+                if (x == 2) return tileSetPreset.Tree;
+                throw new Exception($"Cant find a sprout sprite with index {x}");
+            }
+            cell.Init(
+                GetBackgroundSprite, 
+                GetTreeGrowthSprite,
+                state,
+                settings.TreeGrowthTicks);
 
             return cell;
         }

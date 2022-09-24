@@ -27,7 +27,7 @@ public class CameraBehaviour : MonoBehaviour
         _minBound = new Vector2( -mapHalfSize + maxLeftOffset, Height - mapHalfSize);
         _maxBound = new Vector2(mapHalfSize - cellsPerCameraHalfWidth, mapHalfSize - Height);
 
-        transform.position = new Vector3(int.MinValue, int.MinValue);
+        transform.position = new Vector3(int.MaxValue, int.MinValue);
     }
 
     // Update is called once per frame

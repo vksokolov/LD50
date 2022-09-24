@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TreeDensity: 1
   MapSize: 16
+  TicksBetweenTreeSpawn: 80
+  TreeGrowthTicks: 100

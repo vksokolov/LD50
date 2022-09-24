@@ -10,4 +10,6 @@ public class MapSettings : ScriptableObject
     public float TreeDensity;
     [Range(16,128)]
     public int MapSize;
+    public int TicksBetweenTreeSpawn;
+    public int TreeGrowthTicks;
 }
